@@ -1,3 +1,16 @@
+body {
+	font-family: 'Arial';
+	margin: 0;
+}
+h1 {
+	background-color: #36B140;
+	color: white;
+	height: 50px;
+	padding: 20px;
+	margin: 0 auto;
+	text-transform: uppercase;
+}
+
 .zelenskiyRound {
 	border-radius: 50%;
 }
@@ -16,10 +29,6 @@ img {
 	margin-bottom: 10px;
 }
 
-button {
-	width: 150px;
-}
-
 .zeAnimation {
 	width: 400px;
 	box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, .6);
@@ -32,6 +41,30 @@ button {
 	-webkit-transform: scaleX(-1);
 }
 
-div {
+#zeImgArray {
 	margin-top: 15px;
+}
+
+.wrapper {
+	margin: 0 10px;
+}
+
+button {
+	min-width: 200px;
+	margin: 10px;
+	background-color: #36B140;
+	border-radius: 4px;
+	border: none;
+	padding: 10px;
+	color: white;
+	font-weight: bold;
+	font-size: 100%;
+	width: auto;
+	text-transform: uppercase;
+	outline: none;
+}
+
+button:hover {
+	background-color: #309138;
+	cursor: pointer;
 }
