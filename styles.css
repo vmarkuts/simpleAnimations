@@ -21,6 +21,10 @@ button {
 }
 
 .zeAnimation {
+	width: 400px;
+	box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, .6);
+	transform: translateY(-5%);
+	-webkit-transform: translateY(-5%);
 }
 
 .zeRotate {
@@ -30,11 +34,4 @@ button {
 
 div {
 	margin-top: 15px;
-}
-
-img:hover {
-	width: 400px;
-	box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, .6);
-	transform: translateY(-5%);
-	-webkit-transform: translateY(-5%);
 }
