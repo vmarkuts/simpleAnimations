@@ -149,7 +149,7 @@ function zeDown (image) {
 function addZe(num) {
 	calcTotalImages();
 	var check = totalImages + Number(num);
-	if (check < 101) {
+	if (check < 1001) {
 		for (var i = 0; i < num; i++) {
 			$('#zeImgArray').append(imgLink);
 		}
