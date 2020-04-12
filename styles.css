@@ -13,6 +13,7 @@ img {
 	-webkit-transition: all 0.3s ease-in-out;
 	vertical-align: middle;
 	border-radius: 5px;
+	margin-bottom: 10px;
 }
 
 button {
@@ -20,15 +21,20 @@ button {
 }
 
 .zeAnimation {
-	width: 400px;
-	height: auto;
-	z-index: 10;
-	box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, .6);
-	transform: translateY(-5%);
-	-webkit-transform: translateY(-5%);
 }
 
 .zeRotate {
 	transform: scaleX(-1);
 	-webkit-transform: scaleX(-1);
+}
+
+div {
+	margin-top: 15px;
+}
+
+img:hover {
+	width: 400px;
+	box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, .6);
+	transform: translateY(-5%);
+	-webkit-transform: translateY(-5%);
 }
