@@ -2,28 +2,59 @@ var btnRound = $('#round');
 var btnShadow = $('#shadow');
 var btnRenault = $('#renault');
 var btnWave = $('#wave');
-var shadow = false;
+var btnAddZe = $('#addImage');
+var btnRemoveZe = $('#removeImage');
+var inputZe = $('input[type="number"]');
+var bulkAddZe = $('.bulkInput button');
+var numValidation = $('#numValidation');
+var errorMessage = $('#errorMessage');
+var btnReset = $('#reset');
+var shadowImages = false;
 var count = 1;
 var timeCounter = 0;
 var imgLink = '<img src="https://image.ua/wp-content/uploads/ae88b37a1f9083d2339426b0eb1057de_1579709854-554x466.jpg">';
-init(3);
 var firstZe, midZe, lastZe;
-updatePositions();
+var roundImages = false;
+var totalImages = 3;
+
+addZe(3);
+
+btnReset.click(function(){
+	location.reload();
+});
+
+btnAddZe.click(function(){
+	addZe(1);
+});
+
+bulkAddZe.click(function(){
+	addZe(inputZe.val());
+});
+
+btnRemoveZe.click(function(){
+	removeZe();
+});
 
 btnRound.click(function () {
-	if (!images.hasClass('zelenskiyRound')) {
-		btnRound.text('Make not round');
+	if (!roundImages) {
+		$(this).text('Make not round');
 		images.addClass('zelenskiyRound');
 	} else {
 		images.removeClass('zelenskiyRound');
-		btnRound.text('Round Zelenskiy');
+		$(this).text('Round Zelenskiy');
 	}
+	roundImages = !roundImages;
 });
 
 btnShadow.click(function(){
-	shadow ? $(this).text('Add Some Shadow') : $(this).text('Remove Shadow');
-	images.toggleClass('zelenskiyShadow');
-	shadow = !shadow;
+	if (!shadowImages) {
+		$(this).text('Remove Shadow');
+		images.addClass('zelenskiyShadow');
+	} else {
+		$(this).text('Add Some Shadow');
+		images.removeClass('zelenskiyShadow');
+	}
+	shadowImages = !shadowImages;
 });
 
 btnRenault.click(function(){
@@ -47,10 +78,6 @@ btnRenault.click(function(){
 	}
 });
 
-function removeStyle (image) {
-	image.attr('style','');
-}
-
 btnWave.click(function(){
 	if (count !== 1) {
 		alert('put zelenskiy on earth firstly');
@@ -62,6 +89,32 @@ btnWave.click(function(){
 			setTimeout(function(){removeStyle(images);},timeCounter)
 		}
 		timeCounter = 0;
+	}
+});
+
+inputZe.keypress(function(event){
+    if(event.which === 13) {
+    	if(inputZe.val() > 0 && inputZe.val() < 101) {
+        	addZe(inputZe.val());
+        }
+    }
+});
+
+inputZe.change(function() {
+	var value = $(this).val();
+	if (value < 1) {
+		$(this).val(1);
+		numValidation.text('Value cannot be lower than 1');
+		setTimeout(function(){
+			numValidation.text('');
+		}, 1500);
+	}
+	if (value > 100) {
+		$(this).val(100);
+		numValidation.text('Value cannot be greater than 100');
+		setTimeout(function(){
+			numValidation.text('');
+		}, 1500);
 	}
 });
 
@@ -93,34 +146,24 @@ function zeDown (image) {
 	});
 }
 
-$('button').click(function(){
-	var text = $(this).text();
-	// console.log('u clicked ' + text);
-});
-
-$('input[type="text"]').keypress(function(event){
-    if(event.which === 13) {
-        alert('u hit enter');
-    }
-});
-
-$('input').on('keypress',function(){
-    console.log('keypressed!');
-});
-
-$('input').on('mouseenter',function(){
-    console.log('mouse enter!');
-});
-
-function init(num) {
-	for (var i = 0; i < num; i++) {
-		addZe();
+function addZe(num) {
+	calcTotalImages();
+	var check = totalImages + Number(num);
+	if (check < 101) {
+		for (var i = 0; i < num; i++) {
+			$('#zeImgArray').append(imgLink);
+		}
+		updatePositions();
+		zeRoundChecking();
+		zeShadowCheking();
+	} else {
+		tooManyImages();
 	}
+	calcTotalImages();
 }
 
-function addZe () {
-	$('#zeImgArray').append(imgLink);
-	updatePositions();
+function calcTotalImages() {
+	totalImages = $('#zeImgArray img').length;
 }
 
 function removeZe() {
@@ -128,17 +171,9 @@ function removeZe() {
 		$('#zeImgArray img:last-of-type').remove();
 		updatePositions();
 	} else {
-		alert('You cannot delete the last of the best President');
+		alert('You cannot delete the best president');
 	}
 }
-
-$('#addImage').click(function(){
-	addZe();
-});
-
-$('#removeImage').click(function(){
-	removeZe();
-});
 
 function updatePositions () {
 	var str = '';
@@ -148,12 +183,51 @@ function updatePositions () {
 	str = '#zeImgArray img:eq(-' + X + ')';
 	midZe = $(str);
 	lastZe = $('#zeImgArray img:last-of-type');
+	zeHover();
 }
 
-images.on('mouseover',function(){
-	$(this).addClass('zeAnimation');
-});
+function zeHover() {
+	images.on('mouseover',function(){
+		$(this).addClass('zeAnimation');
+	});
 
-images.on('mouseout',function(){
-	$(this).removeClass('zeAnimation');
-});
+	images.on('mouseout',function(){
+		$(this).removeClass('zeAnimation');
+	});
+}
+
+function zeRoundChecking() {
+	if (roundImages) {
+		images.addClass('zelenskiyRound');
+	} else {
+		images.removeClass('zelenskiyRound');
+	}
+}
+
+function zeShadowCheking() {
+	if (shadowImages) {
+		images.addClass('zelenskiyShadow');
+	} else {
+		images.removeClass('zelenskiyShadow');
+	}
+}
+
+function removeStyle (image) {
+	image.attr('style','');
+}
+
+function tooManyImages() {
+	//make visible
+	errorMessage.toggleClass('invisible');
+	for (let i = 1000; i > 0; i--) {
+		var str = i/100;
+		setTimeout(function() {
+			errorMessage.css('opacity',str);
+		}, 2250);
+	}
+	//make invisible
+	setTimeout(function() {
+		errorMessage.toggleClass('invisible');
+	}, 2500);
+	errorMessage.attr('style','');
+}

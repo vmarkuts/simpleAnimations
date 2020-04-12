@@ -1,14 +1,18 @@
 body {
 	font-family: 'Arial';
 	margin: 0;
+	background-color: white;
 }
 h1 {
 	background-color: #36B140;
 	color: white;
 	height: 50px;
-	padding: 20px;
 	margin: 0 auto;
 	text-transform: uppercase;
+	box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
+	line-height: 1.1;
+	padding-top: 20px;
+	padding-left: 20px;
 }
 
 .zelenskiyRound {
@@ -27,6 +31,7 @@ img {
 	vertical-align: middle;
 	border-radius: 5px;
 	margin-bottom: 10px;
+	z-index: 10;
 }
 
 .zeAnimation {
@@ -47,11 +52,14 @@ img {
 
 .wrapper {
 	margin: 0 10px;
+	margin-top: 20px;
 }
 
-button {
+.actionsOne {
+	margin-top: 20px;
+	margin-right: 20px;
+	margin-bottom: 10px;
 	min-width: 200px;
-	margin: 10px;
 	background-color: #36B140;
 	border-radius: 4px;
 	border: none;
@@ -62,9 +70,92 @@ button {
 	width: auto;
 	text-transform: uppercase;
 	outline: none;
+	box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+button {
+	outline: none;
 }
 
 button:hover {
 	background-color: #309138;
 	cursor: pointer;
+}
+
+.bulkInput {
+	width: 196px;
+	display: flex;
+	flex-direction:row;
+	border-radius: 4px;
+	box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
+	border: 2px solid #36B140;
+	border-radius: 4px;
+}
+
+.bulkInput input {
+	width: 100%;
+	outline: none;
+	padding: 6px;
+	color: #36B140;
+	font-size: 100%;
+	font-weight: bold;
+}
+
+.bulkInput button {
+	border: none;
+	background: #36B140;
+	color: white;
+	text-transform: uppercase;
+	font-size: 100%;
+	font-weight: bold;
+}
+
+.bulkInput button:hover {
+	background-color: #309138;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+#actions {
+	display: inline-block;
+}
+
+#numValidation {
+	min-height: 20px;
+	color: red;
+	margin-left: 20px;
+	align-self: center;
+}
+
+#formZe {
+	display: flex;
+	vertical-align: middle;
+}
+
+#errorMessage {
+	width: 400px;
+	padding: 15px;
+	background-color: rgba(255, 10, 10, 0.75);
+	border-radius: 4px;
+	margin-bottom: 20px;
+	font-size: 110%;
+	font-weight: 400;
+	color: white;
+	transition: all 1s ease-in-out;
+		-webkit-transition: all 0.3s ease-in-out;
+
+}
+
+.invisible {
+	display: none;
+	transition: all 1s fade-in;
+	-webkit-transition: all 0.3s ease-in-out;
 }

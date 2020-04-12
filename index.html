@@ -8,13 +8,24 @@
 <body>
 	<h1>having fun</h1>
 	<div class="wrapper">
-		<button id="addImage">Add Zelenskiy</button>
-		<button id="removeImage">Remove Zelenskiy</button>
-		<button id="round">Round Zelenskiy</button>
-		<button id="shadow">Add Some Shadow</button>
-		<button id="renault">???</button>
-		<button id="wave">Ze Wave</button>
+		<div class="invisible" id="errorMessage">Total images cannot be greater than 100</div>
+		<div id="actions">
+			<div id="formZe">
+				<div class="bulkInput">
+					<input type="number" value="1">
+					<button>Add</button>
+				</div>
+				<span id="numValidation"></span>
+			</div>
+			<button class="actionsOne" id="addImage">Add One Zelenskiy</button>
+			<button class="actionsOne" id="removeImage">Remove Zelenskiy</button>
+			<button class="actionsOne" id="round">Round Zelenskiy</button>
+			<button class="actionsOne" id="shadow">Add Some Shadow</button>
+			<button class="actionsOne" id="renault">???</button>
+			<button class="actionsOne" id="wave">Ze Wave</button>
+			<button class="actionsOne" id="reset">Reset</button>
 
+		</div>
 		<div id="zeImgArray"></div>
 	</div>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.js"></script>
